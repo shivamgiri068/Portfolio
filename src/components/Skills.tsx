@@ -43,7 +43,7 @@ const Skills: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-4xl font-bold text-text-main tracking-tight">
             My <span className="text-[#6d5df0]">Skills</span>
           </h2>
         </motion.div>
@@ -57,7 +57,7 @@ const Skills: React.FC = () => {
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === tab
                   ? 'bg-[#6d5df0] text-white shadow-[0_0_15px_rgba(109,93,240,0.5)]'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-900/50'
+                  : 'text-text-muted hover:text-text-main hover:bg-slate-500/10'
               }`}
             >
               {tab}
@@ -79,14 +79,14 @@ const Skills: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="bg-[#0c0c1e]/65 border border-slate-900 rounded-2xl p-6 hover:border-[#6d5df0]/30 transition-all duration-300"
+                className="bg-bg-card border border-border-primary rounded-2xl p-6 hover:border-[#6d5df0]/30 transition-all duration-300"
               >
                 <div className="flex justify-between items-center mb-4">
-                  <span className="font-semibold text-white text-base">{skill.name}</span>
+                  <span className="font-semibold text-text-main text-base">{skill.name}</span>
                 </div>
                 
                 {/* Progress Bar Track */}
-                <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-slate-500/10 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.percentage}%` }}

@@ -15,7 +15,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-4xl font-bold text-text-main tracking-tight">
             About <span className="text-[#6d5df0]">Me</span>
           </h2>
         </motion.div>
@@ -31,7 +31,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+            <h3 className="text-3xl md:text-4xl font-bold text-text-main leading-tight">
               Passionate Full Stack Developer & Problem Solver
             </h3>
             
@@ -46,7 +46,7 @@ const About: React.FC = () => {
                 href={`${import.meta.env.BASE_URL}assets/Shivam_Giri_Resume.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-[#6d5df0] text-white hover:bg-[#6d5df0]/15 font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+                className="border border-[#6d5df0] text-[#6d5df0] hover:bg-[#6d5df0]/10 font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
               >
                 Download CV
               </a>
@@ -78,14 +78,14 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#0c0c1e]/65 border border-slate-900 rounded-2xl p-6 flex gap-5 items-center hover:border-[#6d5df0]/30 transition-all duration-300"
+                className="bg-bg-card border border-border-primary rounded-2xl p-6 flex gap-5 items-center hover:border-[#6d5df0]/30 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#6d5df0]/15 text-[#6d5df0] shrink-0">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">{item.title}</h4>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                  <h4 className="text-lg font-semibold text-text-main mb-1">{item.title}</h4>
+                  <p className="text-sm text-text-muted leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

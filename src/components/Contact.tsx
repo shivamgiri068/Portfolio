@@ -15,10 +15,10 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="text-4xl font-bold text-text-main tracking-tight mb-4">
             Get In <span className="text-[#6d5df0]">Touch</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
+          <p className="text-text-muted max-w-2xl mx-auto text-sm leading-relaxed">
             I'm currently looking for new opportunities as a Backend Developer or Software Engineer. Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
         </motion.div>
@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#0c0c1e]/65 border border-slate-900 p-8 md:p-12 rounded-3xl text-center relative overflow-hidden"
+          className="bg-bg-card border border-border-primary p-8 md:p-12 rounded-3xl text-center relative overflow-hidden"
         >
           {/* Subtle background glow */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#6d5df0]/10 rounded-full blur-[80px]" />
@@ -45,18 +45,18 @@ const Contact: React.FC = () => {
 
             {/* Social Icons */}
             <div className="mt-12 flex items-center justify-center gap-6">
-              <a href="mailto:shivamvns7985@gmail.com" className="text-slate-400 hover:text-[#6d5df0] transition-colors group">
-                <div className="p-4 bg-slate-950 rounded-full border border-slate-900 group-hover:border-[#6d5df0]/30 transition-colors">
+              <a href="mailto:shivamvns7985@gmail.com" className="text-text-muted hover:text-[#6d5df0] transition-colors group">
+                <div className="p-4 bg-slate-500/10 rounded-full border border-border-primary group-hover:border-[#6d5df0]/30 transition-colors">
                   <Mail size={22} />
                 </div>
               </a>
-              <a href="https://www.linkedin.com/in/shivamgiri068/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#6d5df0] transition-colors group">
-                <div className="p-4 bg-slate-950 rounded-full border border-slate-900 group-hover:border-[#6d5df0]/30 transition-colors">
+              <a href="https://www.linkedin.com/in/shivamgiri068/" target="_blank" rel="noreferrer" className="text-text-muted hover:text-[#6d5df0] transition-colors group">
+                <div className="p-4 bg-slate-500/10 rounded-full border border-border-primary group-hover:border-[#6d5df0]/30 transition-colors">
                   <FaLinkedin size={22} />
                 </div>
               </a>
-              <a href="https://github.com/shivamgiri068" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#6d5df0] transition-colors group">
-                <div className="p-4 bg-slate-950 rounded-full border border-slate-900 group-hover:border-[#6d5df0]/30 transition-colors">
+              <a href="https://github.com/shivamgiri068" target="_blank" rel="noreferrer" className="text-text-muted hover:text-[#6d5df0] transition-colors group">
+                <div className="p-4 bg-slate-500/10 rounded-full border border-border-primary group-hover:border-[#6d5df0]/30 transition-colors">
                   <FaGithub size={22} />
                 </div>
               </a>

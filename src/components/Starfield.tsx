@@ -20,7 +20,11 @@ interface ShootingStar {
   active: boolean;
 }
 
-const Starfield: React.FC = () => {
+interface StarfieldProps {
+  theme: 'dark' | 'light';
+}
+
+const Starfield: React.FC<StarfieldProps> = ({ theme }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -80,6 +84,10 @@ const Starfield: React.FC = () => {
     const updateAndDraw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Define colors based on theme
+      const starColorRGB = theme === 'dark' ? '255, 255, 255' : '109, 93, 240';
+      const ssColorRGB = theme === 'dark' ? '255, 255, 255' : '109, 93, 240';
+
       // 1. Draw Twinkling Stars
       stars.forEach((star) => {
         if (star.increasing) {
@@ -90,7 +98,7 @@ const Starfield: React.FC = () => {
           if (star.opacity <= 0.2) star.increasing = true;
         }
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fillStyle = `rgba(${starColorRGB}, ${star.opacity})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
@@ -120,8 +128,8 @@ const Starfield: React.FC = () => {
           ss.x - ss.dx * (ss.length / ss.speed),
           ss.y - ss.dy * (ss.length / ss.speed)
         );
-        grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
-        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        grad.addColorStop(0, `rgba(${ssColorRGB}, ${ss.opacity})`);
+        grad.addColorStop(1, `rgba(${ssColorRGB}, 0)`);
 
         ctx.strokeStyle = grad;
         ctx.lineWidth = 1.5;
@@ -145,12 +153,12 @@ const Starfield: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [theme]); // Re-run effect when theme changes to update active colors
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] bg-[#030014]"
+      className="fixed inset-0 w-full h-full pointer-events-none z-[-1] transition-colors duration-500 bg-bg-primary"
     />
   );
 };

@@ -67,10 +67,10 @@ const Projects: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white tracking-tight mb-2">
+          <h2 className="text-4xl font-bold text-text-main tracking-tight mb-2">
             Featured <span className="text-[#6d5df0]">Projects</span>
           </h2>
-          <p className="text-slate-400 text-sm">Explore my recent work</p>
+          <p className="text-text-muted text-sm">Explore my recent work</p>
         </motion.div>
 
         {/* Projects Grid */}
@@ -82,7 +82,7 @@ const Projects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-[#0c0c1e]/65 border border-slate-900 rounded-3xl overflow-hidden flex flex-col h-full hover:border-[#6d5df0]/30 transition-all duration-300 group"
+              className="bg-bg-card border border-border-primary rounded-3xl overflow-hidden flex flex-col h-full hover:border-[#6d5df0]/30 transition-all duration-300 group"
             >
               {/* Graphic Card Header */}
               <div className={`h-40 w-full bg-gradient-to-br ${project.gradient} relative flex items-center justify-center p-6 transition-all duration-500 group-hover:scale-[1.02]`}>
@@ -94,7 +94,7 @@ const Projects: React.FC = () => {
 
               {/* Card Body */}
               <div className="p-6 flex flex-col flex-grow">
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-text-muted text-sm leading-relaxed mb-6 flex-grow">
                   {project.description}
                 </p>
 
@@ -111,12 +111,12 @@ const Projects: React.FC = () => {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex items-center justify-between pt-4 border-t border-slate-900">
+                <div className="flex items-center justify-between pt-4 border-t border-border-primary">
                   <a 
                     href={project.github} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#6d5df0] transition-colors"
+                    className="flex items-center gap-2 text-sm text-text-muted hover:text-[#6d5df0] transition-colors"
                   >
                     <FaGithub size={18} />
                     <span>Source</span>
@@ -126,7 +126,7 @@ const Projects: React.FC = () => {
                       href={project.live} 
                       target="_blank" 
                       rel="noreferrer" 
-                      className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#6d5df0] transition-colors"
+                      className="flex items-center gap-2 text-sm text-text-muted hover:text-[#6d5df0] transition-colors"
                     >
                       <ExternalLink size={18} />
                       <span>Live Demo</span>
