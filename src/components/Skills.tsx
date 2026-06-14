@@ -1,58 +1,104 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const skillsData = [
-  { category: "Programming", items: ["Java", "JavaScript", "HTML5", "CSS3", "SQL"] },
-  { category: "Frameworks & Tools", items: ["Spring Boot", "Spring MVC", "REST APIs", "Git", "GitHub"] },
-  { category: "Databases & Core", items: ["MySQL", "Oracle", "MongoDB", "System Design", "OOPs"] }
+interface SkillItem {
+  name: string;
+  percentage: number;
+  category: 'Frontend' | 'Backend' | 'Tools';
+}
+
+const skillsData: SkillItem[] = [
+  // Frontend
+  { name: 'HTML', percentage: 90, category: 'Frontend' },
+  { name: 'CSS', percentage: 85, category: 'Frontend' },
+  { name: 'JavaScript', percentage: 85, category: 'Frontend' },
+  { name: 'TypeScript', percentage: 80, category: 'Frontend' },
+  // Backend
+  { name: 'Node.js', percentage: 80, category: 'Backend' },
+  { name: 'Express', percentage: 80, category: 'Backend' },
+  { name: 'MongoDB', percentage: 75, category: 'Backend' },
+  { name: 'MySQL', percentage: 80, category: 'Backend' },
+  { name: 'REST APIs', percentage: 85, category: 'Backend' },
+  // Tools
+  { name: 'Git', percentage: 85, category: 'Tools' },
+  { name: 'GitHub', percentage: 85, category: 'Tools' },
+  { name: 'VS Code', percentage: 90, category: 'Tools' },
 ];
 
 const Skills: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'All' | 'Frontend' | 'Backend' | 'Tools'>('All');
+
+  const filteredSkills = skillsData.filter(
+    (skill) => activeTab === 'All' || skill.category === activeTab
+  );
+
   return (
-    <section id="skills" className="py-24 bg-slate-900/30 relative z-10 border-y border-slate-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-24 relative z-10 px-4">
+      <div className="max-w-5xl mx-auto">
         
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical <span className="gradient-text">Skills</span></h2>
-          <div className="w-20 h-1 bg-purple-500 mx-auto rounded-full" />
+          <h2 className="text-4xl font-bold text-white tracking-tight">
+            My <span className="text-[#6d5df0]">Skills</span>
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillsData.map((skillGroup, index) => (
-            <motion.div
-              key={skillGroup.category}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass p-8 rounded-2xl border border-slate-700/50 hover:border-cyan-500/50 transition-colors group"
+        {/* Tab Selectors */}
+        <div className="flex justify-center gap-3 mb-16 flex-wrap">
+          {(['All', 'Frontend', 'Backend', 'Tools'] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === tab
+                  ? 'bg-[#6d5df0] text-white shadow-[0_0_15px_rgba(109,93,240,0.5)]'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-900/50'
+              }`}
             >
-              <h3 className="text-xl font-semibold mb-6 text-cyan-400 group-hover:text-cyan-300 transition-colors">
-                {skillGroup.category}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {skillGroup.items.map((skill, i) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (index * 0.1) + (i * 0.05) }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 rounded-lg border border-slate-700 hover:bg-slate-700 hover:border-cyan-400/50 transition-all cursor-default shadow-sm hover:shadow-[0_0_10px_rgba(0,243,255,0.2)]"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+              {tab}
+            </button>
           ))}
         </div>
+
+        {/* Skills Grid */}
+        <motion.div 
+          layout
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill) => (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="bg-[#0c0c1e]/65 border border-slate-900 rounded-2xl p-6 hover:border-[#6d5df0]/30 transition-all duration-300"
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <span className="font-semibold text-white text-base">{skill.name}</span>
+                </div>
+                
+                {/* Progress Bar Track */}
+                <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.percentage}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="h-full bg-[#6d5df0] rounded-full"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
     </section>

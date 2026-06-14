@@ -1,66 +1,96 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Database, Code2 } from 'lucide-react';
+import { Code2, User, Briefcase } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 relative z-10 px-4">
+      <div className="max-w-6xl mx-auto">
         
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About <span className="gradient-text">Me</span></h2>
-          <div className="w-20 h-1 bg-cyan-500 mx-auto rounded-full" />
+          <h2 className="text-4xl font-bold text-white tracking-tight">
+            About <span className="text-[#6d5df0]">Me</span>
+          </h2>
         </motion.div>
 
+        {/* Section Grid */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column: Text & Buttons */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass p-8 rounded-2xl relative group"
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <h3 className="text-2xl font-semibold mb-4 text-white">Who am I?</h3>
-            <p className="text-slate-300 leading-relaxed mb-6">
-              I am a Final Year B.Tech CSE student (Class of 2026) with a deep passion for Software Development and Backend Engineering. My journey in tech is driven by a curiosity to understand how complex systems work under the hood.
-            </p>
-            <p className="text-slate-300 leading-relaxed mb-6">
-              I specialize in Java, Spring Boot, and REST APIs, alongside a strong foundation in Database Management Systems (MySQL, MongoDB) and System Design. I'm constantly building projects to improve my problem-solving skills.
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              Currently, I am actively seeking opportunities as a Java Backend Developer or Software Engineer where I can contribute to innovative, technology-driven solutions.
-            </p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              Passionate Full Stack Developer & Problem Solver
+            </h3>
+            
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a 
+                href="#contact" 
+                className="bg-[#6d5df0] hover:bg-[#5b4ce0] text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(109,93,240,0.4)]"
+              >
+                Get In Touch
+              </a>
+              <a 
+                href={`${import.meta.env.BASE_URL}assets/Shivam_Giri_Resume.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-[#6d5df0] text-white hover:bg-[#6d5df0]/15 font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+              >
+                Download CV
+              </a>
+            </div>
           </motion.div>
 
+          {/* Right Column: Stacked Cards */}
           <div className="space-y-6">
             {[
-              { icon: <Terminal size={24} className="text-cyan-400" />, title: 'Backend Development', desc: 'Building robust, scalable server-side logic using Java & Spring Boot.' },
-              { icon: <Database size={24} className="text-purple-400" />, title: 'Database Architecture', desc: 'Designing efficient schemas and managing data with MySQL and MongoDB.' },
-              { icon: <Code2 size={24} className="text-blue-400" />, title: 'Problem Solving', desc: 'Writing clean, optimized code with strong fundamentals in OOPs and Data Structures.' }
+              { 
+                icon: <Code2 size={22} />, 
+                title: 'Web Development', 
+                desc: 'Building responsive and user-friendly full stack web applications using modern technologies.' 
+              },
+              { 
+                icon: <User size={22} />, 
+                title: 'Problem Solving', 
+                desc: 'Solving coding challenges and developing efficient solutions using Java.' 
+              },
+              { 
+                icon: <Briefcase size={22} />, 
+                title: 'Continuous Learning', 
+                desc: 'Exploring new technologies and improving skills in frontend, backend, and software development.' 
+              }
             ].map((item, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-6 rounded-xl flex gap-4 items-start"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-[#0c0c1e]/65 border border-slate-900 rounded-2xl p-6 flex gap-5 items-center hover:border-[#6d5df0]/30 transition-all duration-300"
               >
-                <div className="p-3 bg-slate-800 rounded-lg border border-slate-700">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#6d5df0]/15 text-[#6d5df0] shrink-0">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-slate-100 mb-2">{item.title}</h4>
-                  <p className="text-sm text-slate-400">{item.desc}</p>
+                  <h4 className="text-lg font-semibold text-white mb-1">{item.title}</h4>
+                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
 
       </div>
